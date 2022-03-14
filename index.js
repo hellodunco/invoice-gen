@@ -1,5 +1,6 @@
-const invoice_num = Math.floor(Math.random() * 900) + 1000;
+const { createInvoice } = require("./createInvoice")
 
+const invoice_num = Math.floor(Math.random() * 900) + 1000;
 
 // Customer data
 const invoice = {
@@ -30,3 +31,6 @@ const invoice = {
   invoice_num
 };
 
+console.log(invoice_num);
+
+createInvoice(invoice, `invoice_${invoice_num}.pdf`);
