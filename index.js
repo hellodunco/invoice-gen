@@ -20,6 +20,48 @@ const invoice = {
       amount: 6000
     },
     {
+      item: "TC 100",
+      description: "Toner Cartridge",
+      quantity: 2,
+      amount: 6000
+    },
+    {
+      item: "TC 100",
+      description: "Toner Cartridge",
+      quantity: 2,
+      amount: 6000
+    },
+    {
+      item: "TC 100",
+      description: "Toner Cartridge",
+      quantity: 2,
+      amount: 6000
+    },
+    {
+      item: "TC 100",
+      description: "Toner Cartridge",
+      quantity: 2,
+      amount: 6000
+    },
+    {
+      item: "TC 100",
+      description: "Toner Cartridge",
+      quantity: 2,
+      amount: 6000
+    },
+    {
+      item: "TC 100",
+      description: "Toner Cartridge",
+      quantity: 2,
+      amount: 6000
+    },
+    {
+      item: "TC 100",
+      description: "Toner Cartridge",
+      quantity: 2,
+      amount: 6000
+    },
+    {
       item: "USB_EXT",
       description: "USB Cable Extender",
       quantity: 1,

@@ -20,10 +20,10 @@ function generateHeader(doc) {
     .font('Helvetica-Bold')
     .fontSize(20)
     .fontSize(10)
-    .text("SCA Ltd.", 200, 60, { align: "right" })
-    .text("All Africa Conference Of Churches Building", 200, 75, { align: "right" })
-    .text("Waiyaki Way,", 200, 90, { align: "right" })
-    .text("Westlands, Kenya", 200, 105, { align: "right" })
+    .text("Spartec Consortium - Africa (SCA) Ltd.", 200, 60, { align: "right" })
+    .text("All Africa Conference Of Churches Building 2nd floor", 200, 75, { align: "right" })
+    .text("P.O BOX 40052-00100,", 200, 90, { align: "right" })
+    .text("Waiyaki way, Nairobi, Kenya", 200, 105, { align: "right" })
     .moveDown();
 }
 
@@ -31,11 +31,11 @@ function generateCustomerInformation(doc, invoice) {
   doc
     .fillColor("#444444")
     .fontSize(20)
-    .text("Invoice", 50, 160);
+    .text("Invoice", 50, 150);
 
-  generateLine(doc, 185);
+  generateLine(doc, 175);
 
-  const customerInformationTop = 195;
+  const customerInformationTop = 185;
 
   doc
     .fontSize(10)
@@ -67,15 +67,16 @@ function generateCustomerInformation(doc, invoice) {
     )
     .moveDown();
 
-  generateLine(doc, 242);
+  generateLine(doc, 232);
+  generateLine(doc, 236);
 }
 
 function generateInvoiceTable(doc, invoice) {
   let i;
-  const invoiceTableTop = 280;
+  const invoiceTableTop = 255;
 
   doc.font("Helvetica-Bold");
-  generateTableRow(
+  generateTableItems(
     doc,
     invoiceTableTop,
     "Item",
@@ -84,13 +85,13 @@ function generateInvoiceTable(doc, invoice) {
     "Quantity",
     "Total"
   );
-  generateLine(doc, invoiceTableTop + 20);
+  generateLine(doc, invoiceTableTop + 15);
   doc.font("Helvetica");
 
   for (i = 0; i < invoice.items.length; i++) {
     const item = invoice.items[i];
-    const position = invoiceTableTop + (i + 1) * 30;
-    generateTableRow(
+    const position = invoiceTableTop + (i + 1) * 24;
+    generateTableItems(
       doc,
       position,
       item.item,
@@ -100,11 +101,11 @@ function generateInvoiceTable(doc, invoice) {
       formatCurrency(item.amount)
     );
 
-    generateLine(doc.fillColor('#00A300'), position + 20);
+    generateLine(doc, position + 15);
   }
 
-  const subtotalPosition = invoiceTableTop + (i + 1) * 30;
-  generateTableRow(
+  const subtotalPosition = invoiceTableTop + (i + 1) * 24;
+  generateTableTotals(
     doc,
     subtotalPosition,
     "",
@@ -115,7 +116,7 @@ function generateInvoiceTable(doc, invoice) {
   );
 
   const paidToDatePosition = subtotalPosition + 20;
-  generateTableRow(
+  generateTableTotals(
     doc,
     paidToDatePosition,
     "",
@@ -127,9 +128,8 @@ function generateInvoiceTable(doc, invoice) {
 
   const duePosition = paidToDatePosition + 25;
   doc.font("Helvetica-Bold");
-  generateTableRow(
-    doc
-      .fillColor('#00A300'),
+  generateTableTotals(
+    doc,
     duePosition,
     "",
     "",
@@ -143,15 +143,16 @@ function generateInvoiceTable(doc, invoice) {
 function generateFooter(doc) {
   doc
     .fontSize(10)
+    .fillColor('#00A300')
     .text(
-      "Payment is due within 15 days. Thank you for your business.",
+      "Payment is due within 30 days. Thank you for your business.",
       50,
       780,
       { align: "center", width: 500 }
     );
 }
 
-function generateTableRow(
+function generateTableItems(
   doc,
   y,
   item,
@@ -162,6 +163,24 @@ function generateTableRow(
 ) {
   doc
     .fontSize(10)
+    .text(item, 50, y)
+    .text(description, 150, y)
+    .text(unitCost, 280, y, { width: 90, align: "right" })
+    .text(quantity, 370, y, { width: 90, align: "right" })
+    .text(lineTotal, 0, y, { align: "right" });
+}
+function generateTableTotals(
+  doc,
+  y,
+  item,
+  description,
+  unitCost,
+  quantity,
+  lineTotal
+) {
+  doc
+    .fontSize(11)
+    .fillColor('#00A300')
     .text(item, 50, y)
     .text(description, 150, y)
     .text(unitCost, 280, y, { width: 90, align: "right" })
