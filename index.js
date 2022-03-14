@@ -1,6 +1,7 @@
 const invoice_num = Math.floor(Math.random() * 900) + 1000;
 
 
+// Customer data
 const invoice = {
   shipping: {
     name: "John Mwangi",
